@@ -849,6 +849,17 @@ function showConfirmDialog(unanswered) {
   document.body.appendChild(overlay);
 }
 
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyGoHZDY6P336GYVqy2r6plW6vTsj15gd7U-Ay1hGq0VhWIlSzrdwWffWZMskodGEJZ/exec';
+
+function sendToSheet(payload) {
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
 function submitQuiz(timeout) {
   clearInterval(state.timer);
   state.submitted = true;
@@ -860,6 +871,22 @@ function submitQuiz(timeout) {
 
   const score = (correct / QUIZ_SIZE * 10).toFixed(1);
   const scoreNum = parseFloat(score);
+
+  // Tính thời gian đã làm
+  const elapsed = TOTAL_TIME - state.timeLeft;
+  const mm = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const ss = String(elapsed % 60).padStart(2, '0');
+  const timeTaken = mm + ':' + ss;
+
+  // Gửi lên Google Sheet
+  sendToSheet({
+    name: state.userName,
+    score: scoreNum.toFixed(1),
+    correct: correct,
+    wrong: QUIZ_SIZE - correct,
+    timeTaken: timeTaken,
+    status: timeout ? 'Hết giờ' : 'Nộp bài'
+  });
 
   // Result
   document.getElementById('resultName').textContent = state.userName;
