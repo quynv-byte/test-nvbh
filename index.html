@@ -1134,7 +1134,8 @@ function showConfirmDialog(unanswered) {
   document.body.appendChild(overlay);
 }
 
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz4wHTCPDHGiE8mp4asKxkAfrnhOx7kFZOojuZaTDb1KD0a5ZcY5aTSaVhxO4TLMBnN/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzTi_zg9aK7rAxAx4Ha32yJn6THUGS9mIB-usP2VLeIi29gO0cGhPJA1uAla1Uv6mBV/exec';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRfEAlrtWR7Ey77WF6zGNzrvg94GnLvQP2WbB74sRpGI0HF36g35DHJkXq8EVkCs9oobdQNpFAqAWOJ/pub?output=csv';
 
 function sendToSheet(payload) {
   fetch(SHEET_URL, {
@@ -1338,40 +1339,49 @@ function adminSetFilter(f, btn) {
   renderAdminTable();
 }
 
-function loadAdminData() {
+async function loadAdminData() {
   document.getElementById('adminLoading').style.display = 'block';
   document.getElementById('adminEmpty').style.display = 'none';
   document.getElementById('adminTableBody').innerHTML = '';
 
-  // Dùng JSONP để bypass CORS
-  const callbackName = 'adminCallback_' + Date.now();
-  const script = document.createElement('script');
-  script.src = SHEET_URL + '?callback=' + callbackName;
-
-  const timeout = setTimeout(() => {
-    cleanup();
-    showAdminError();
-  }, 10000);
-
-  function cleanup() {
-    clearTimeout(timeout);
-    if (script.parentNode) script.parentNode.removeChild(script);
-    delete window[callbackName];
-  }
-
-  window[callbackName] = function(json) {
-    cleanup();
-    adminData = (json.data || []).reverse();
+  try {
+    const res = await fetch(CSV_URL + '&t=' + Date.now());
+    const text = await res.text();
+    adminData = parseCSV(text).reverse();
     updateAdminStats();
     renderAdminTable();
-  };
-
-  script.onerror = function() {
-    cleanup();
+  } catch(err) {
     showAdminError();
-  };
+  }
+}
 
-  document.head.appendChild(script);
+function parseCSV(text) {
+  const lines = text.trim().split('
+');
+  if (lines.length < 2) return [];
+  // Skip header row (row 0)
+  return lines.slice(1).map(line => {
+    // Handle quoted fields
+    const cols = [];
+    let cur = '';
+    let inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    cols.push(cur.trim());
+    return {
+      time:      cols[0] || '',
+      name:      cols[1] || '',
+      score:     cols[2] || '',
+      correct:   cols[3] || '',
+      wrong:     cols[4] || '',
+      timeTaken: cols[5] || '',
+      status:    cols[6] || ''
+    };
+  }).filter(r => r.name);
 }
 
 function showAdminError() {
