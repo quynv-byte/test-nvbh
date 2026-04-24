@@ -570,6 +570,195 @@
     body { padding: 12px; }
     .card, .question-card, .result-card { padding: 20px; }
   }
+
+  /* ── ADMIN ── */
+  #adminLoginScreen { max-width: 400px; margin: 80px auto; }
+  #adminScreen { max-width: 960px; margin: 0 auto; padding-bottom: 40px; }
+
+  .admin-header {
+    background: #1e293b;
+    color: #fff;
+    border-radius: 16px;
+    padding: 18px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .admin-header-left { display: flex; align-items: center; gap: 12px; }
+  .admin-logo { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .admin-logo span { color: #60a5fa; }
+  .admin-tag { background: #334155; color: #94a3b8; font-size: 12px; padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+
+  .admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media(max-width:600px){ .admin-stats-grid { grid-template-columns: 1fr 1fr; } }
+
+  .admin-stat-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .admin-stat-icon { font-size: 24px; margin-bottom: 8px; }
+  .admin-stat-num { font-size: 28px; font-weight: 800; color: var(--gray-900); }
+  .admin-stat-label { font-size: 12px; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
+
+  .admin-table-wrap {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .admin-table-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .admin-table-title { font-size: 16px; font-weight: 700; }
+  .admin-search {
+    padding: 8px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 999px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.2s;
+  }
+  .admin-search:focus { border-color: var(--primary); }
+
+  .admin-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .admin-table th {
+    background: var(--gray-50);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--gray-200);
+    white-space: nowrap;
+  }
+  .admin-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+    vertical-align: middle;
+  }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: var(--gray-50); }
+
+  .score-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .score-pill.ex { background: #DCFCE7; color: #16A34A; }
+  .score-pill.good { background: #FEF9C3; color: #92400E; }
+  .score-pill.fail { background: #FEE2E2; color: #DC2626; }
+
+  .status-pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .status-pill.done { background: var(--primary-light); color: var(--primary); }
+  .status-pill.timeout { background: #FEE2E2; color: #DC2626; }
+
+  .admin-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray-400);
+  }
+  .admin-empty .big { font-size: 48px; margin-bottom: 12px; }
+
+  .admin-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .admin-filter-btn {
+    padding: 6px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 999px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    color: var(--gray-600);
+    transition: all 0.15s;
+  }
+  .admin-filter-btn.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .btn-logout {
+    padding: 8px 18px;
+    background: #334155;
+    border: none;
+    border-radius: 999px;
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-logout:hover { background: #475569; color: #fff; }
+
+  .btn-refresh {
+    padding: 8px 16px;
+    background: var(--primary);
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+  }
+  .btn-refresh:hover { background: var(--primary-dark); }
+
+  .admin-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1e293b;
+    color: #64748b;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 100;
+  }
+  .admin-link:hover { color: #fff; background: #334155; }
 </style>
 </head>
 <body>
@@ -680,6 +869,101 @@
   <div id="reviewList"></div>
   <button class="btn btn-secondary" style="width:100%;margin-top:8px;" onclick="backToResult()">← Quay lại kết quả</button>
 </div>
+
+<!-- ── ADMIN LOGIN ── -->
+<div id="adminLoginScreen" class="screen">
+  <div style="text-align:center;margin-bottom:20px;">
+    <div class="brand-badge"><div class="dot"></div> QUẢN TRỊ</div>
+  </div>
+  <div class="card">
+    <div style="font-size:36px;text-align:center;margin-bottom:12px;">🔐</div>
+    <div class="start-title" style="text-align:center;font-size:22px;">Đăng nhập Admin</div>
+    <div class="start-subtitle" style="text-align:center;margin-bottom:24px;">Chỉ dành cho quản trị viên</div>
+    <input class="name-input" type="text" id="adminUser" placeholder="Tên đăng nhập" autocomplete="username" />
+    <input class="name-input" type="password" id="adminPass" placeholder="Mật khẩu" autocomplete="current-password" style="margin-top:-4px;" />
+    <div id="adminLoginErr" style="color:#DC2626;font-size:13px;margin:-8px 0 12px;display:none;">Sai tên đăng nhập hoặc mật khẩu!</div>
+    <button class="btn btn-primary" onclick="adminLogin()" style="background:#1e293b;box-shadow:none;">Đăng nhập</button>
+    <button class="btn btn-secondary" onclick="show('startScreen')" style="margin-top:10px;">← Quay lại trang chủ</button>
+  </div>
+</div>
+
+<!-- ── ADMIN DASHBOARD ── -->
+<div id="adminScreen" class="screen">
+  <div class="admin-header">
+    <div class="admin-header-left">
+      <div class="admin-logo">QUIZ <span>Admin</span></div>
+      <div class="admin-tag">Test Nhân Viên Bán Hàng</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="btn-refresh" onclick="loadAdminData()">↻ Làm mới</button>
+      <button class="btn-logout" onclick="adminLogout()">Đăng xuất</button>
+    </div>
+  </div>
+
+  <div class="admin-stats-grid">
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon">👥</div>
+      <div class="admin-stat-num" id="statTotal">—</div>
+      <div class="admin-stat-label">Tổng lượt thi</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon">📊</div>
+      <div class="admin-stat-num" id="statAvg">—</div>
+      <div class="admin-stat-label">Điểm trung bình</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon">🏆</div>
+      <div class="admin-stat-num" id="statPass">—</div>
+      <div class="admin-stat-label">Đạt (≥ 5 điểm)</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon">⏱️</div>
+      <div class="admin-stat-num" id="statAvgTime">—</div>
+      <div class="admin-stat-label">Thời gian TB</div>
+    </div>
+  </div>
+
+  <div class="admin-table-wrap">
+    <div class="admin-table-header">
+      <div class="admin-table-title">📋 Danh sách kết quả</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <div class="admin-filters">
+          <button class="admin-filter-btn active" onclick="adminSetFilter('all',this)">Tất cả</button>
+          <button class="admin-filter-btn" onclick="adminSetFilter('pass',this)">✓ Đạt</button>
+          <button class="admin-filter-btn" onclick="adminSetFilter('fail',this)">✗ Chưa đạt</button>
+        </div>
+        <input class="admin-search" id="adminSearch" placeholder="🔍 Tìm tên..." oninput="renderAdminTable()" />
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Thời gian</th>
+            <th>Họ tên</th>
+            <th>Điểm</th>
+            <th>Đúng</th>
+            <th>Sai</th>
+            <th>TG làm bài</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+    </div>
+    <div id="adminEmpty" class="admin-empty" style="display:none;">
+      <div class="big">📭</div>
+      <div>Chưa có dữ liệu nào</div>
+    </div>
+    <div id="adminLoading" style="text-align:center;padding:40px;color:var(--gray-400);">
+      ⏳ Đang tải dữ liệu...
+    </div>
+  </div>
+</div>
+
+<!-- Nút Admin ẩn ở góc dưới -->
+<button class="admin-link" onclick="goAdmin()" id="adminFloatBtn">⚙ Admin</button>
 
 <script>
 const ALL_QUESTIONS = [{"question":"Chất liệu da được sử dụng sản xuất sản phẩm?","options":["Da thật nội địa","Da thật nguyên tấm nhập khẩu 100%","Da thô mềm","Da giả"],"answer":1},{"question":"Theo ứng dụng, da bò được phân loại thành các dòng nào?","options":["Da bò dập vân, da bò có gai","Da bò sáp, da bò dập vân, da bò sơn phủ","Da bò sáp, da bò mịn, da bò có gai","Da bò sáp, da bò dập vân, da bò có gai"],"answer":1},{"question":"Đặc điểm nào sau đây đúng với da bò thật?","options":["Cứng và không đàn hồi","Khó thích ứng với môi trường","Không hấp thu độ ẩm","Độ bền cao, bề mặt đẹp, thích ứng với môi trường"],"answer":3},{"question":"Ưu điểm nổi bật của da cá sấu?","options":["Giá rẻ, dễ thay thế","Độc đáo, vân da riêng biệt, độ bền cao","Vân da giống nhau","Không bao giờ phai màu"],"answer":1},{"question":"Sản phẩm da cá sấu sử dụng những bộ phận da nào?","options":["Da bụng, da đuôi, da chân","Da bụng, da đuôi, da chân, da đầu","Da bụng, da chân, da hông, da đuôi, da lưng","Da lưng, da bụng, da chân, da hông, da gù, da đuôi"],"answer":3},{"question":"Những bộ phận nào của da cá sấu có gai?","options":["Da lưng, da chân, da bụng","Da lưng, da đuôi, da hông","Da lưng, da đuôi, da gù","Da lưng, da hông, da bụng"],"answer":2},{"question":"Thương hiệu có những loại giày da nam nào?","options":["Giày lười, giày tây buộc dây, giày đế bệt","Giày buộc dây, giày không buộc dây, giày đế bệt","Giày đế bệt, giày lười, giày tăng chiều cao","Giày lười, giày tây buộc dây, giày tây không buộc dây, giày boot, giày đế chunky"],"answer":3},{"question":"Hai dáng giày tây có dây phổ biến của thương hiệu là gì?","options":["Giày Oxford, giày Penny","Giày Oxford, giày Loafer","Giày Oxford, giày Derby","Giày Oxford, giày Moccasin"],"answer":2},{"question":"Giày Moccasins là dạng giày gì?","options":["Giày lười đế bệt","Giày lười đế cao 2-3 phân","Giày lười đế bệt và đế cao 2-3 phân","Giày tây"],"answer":0},{"question":"Giày đế chunky là loại giày gì?","options":["Là loại giày có phần đế siêu mỏng, tạo cảm giác thoải mái","Là loại giày có phần độn đế cao bên trong giày","Là loại giày ủng được lấy cảm hứng từ quân đội","Là loại giày có phần đế lớn, chắc chắn và dày hơn so với các loại giày tây thông thường"],"answer":3},{"question":"Đặc điểm của giày lười moccasin?","options":["Giày không buộc dây, đế bệt","Giày có buộc dây, đế gỗ","Giày không buộc dây, đế gỗ","Giày có buộc dây, đế bệt"],"answer":0},{"question":"Đế giày có những loại nào?","options":["Đế cao su, đế kếp, đế da, đế phíp","Đế cao su, đế da, đế nhựa","Đế cao su, đế phíp, đế nhựa","Đế cao su, đế nhựa, đế kếp, đế phíp"],"answer":0},{"question":"Dây lưng có những loại mặt khóa nào?","options":["Mặt lăn, mặt kim, mặt lỗ","Mặt lăn, mặt bấm, mặt kim","Mặt kim, mặt bấm, mặt khóa hai vòng","Mặt kim, mặt lăn, mặt khóa hai vòng"],"answer":3},{"question":"Mặt dây lưng làm từ chất liệu gì?","options":["Bạc nguyên chất","Inox 304","Hợp kim cao cấp","Thép không gỉ"],"answer":2},{"question":"Mặt dây lưng có bị bạc màu không?","options":["Không","Có, màu bạc dễ phai hơn màu vàng","Có, kèm theo gỉ, tróc màu loang lổ","Có, sau một thời gian sử dụng sẽ nhạt đi một chút nhưng không bị gỉ, tróc màu loang lổ"],"answer":3},{"question":"Bản dây lưng có kích thước phổ biến là bao nhiêu cm?","options":["2.5 cm","3 cm – 4 cm","4 cm – 5 cm","5 cm – 6 cm"],"answer":1},{"question":"Dòng ví có những dáng ví nào?","options":["Ví cầm tay, ví ngắn, ví để thẻ, ví mini","Ví đeo chéo, ví cầm tay, ví dài, ví ngắn","Ví cầm tay, ví dài, ví trung, ví ngắn","Tất cả các đáp án trên đều đúng"],"answer":0},{"question":"Ví ngắn được làm từ chất liệu da nào?","options":["Da bò","Da bò, da cá sấu","Da bò, da cừu","Da cá sấu"],"answer":1},{"question":"Ví cầm tay được làm từ chất liệu da nào?","options":["Da cá sấu, da cừu","Da bò, da cá sấu","Da bò, da cừu","Da bò, da dê"],"answer":1},{"question":"Ví đựng thẻ được làm từ chất liệu da nào?","options":["Da bò","Da bò, da cá sấu","Da bò, da cừu","Da bò, da dê"],"answer":0},{"question":"Ví vimi là dòng ví như thế nào?","options":["Là dòng ví có kích thước lớn để đựng rất nhiều giấy tờ","Là dòng ví chỉ có các ngăn đựng thẻ","Là dòng ví cơ bản có kích thước thông dụng","Là dòng ví có kích thước nhỏ, phiên bản thu nhỏ của các mẫu ví truyền thống"],"answer":3},{"question":"Ví ngắn có mấy dáng ví?","options":["2 dáng: ngang và đứng","2 dáng: ngang và chéo","3 dáng: ngang, dọc và chéo","3 dáng: ngang, dọc và đứng"],"answer":0},{"question":"Ví cầm tay có mấy loại? Đó là những loại nào?","options":["2 loại: Ví cầm tay khóa zipper (khóa kéo), khóa số","2 loại: Ví cầm tay khóa bấm, khóa inox","3 loại: Ví cầm tay khóa zipper (khóa kéo), khóa số và khóa nam châm","3 loại: Ví cầm tay khóa zipper (khóa kéo), khóa bấm và khóa inox"],"answer":2},{"question":"Dòng túi xách gồm những loại nào?","options":["Túi iPad/ đeo chéo, túi xách, balo","Túi iPad/ đeo chéo, cặp da, túi xách","Balo, túi xách, cặp da","Balo, túi iPad/ đeo chéo, cặp da"],"answer":1},{"question":"Túi xách có những chất liệu da nào?","options":["Da bò","Da cá sấu","Da bò, da cá sấu","Da bò, da cừu"],"answer":0},{"question":"Cặp da nam có mấy loại khóa?","options":["1 loại: Khóa số","1 loại: Khóa kéo","2 loại: Khóa kéo và khóa nam châm","2 loại: Khóa số và khóa nam châm"],"answer":3},{"question":"Túi xách có kích thước đựng vừa laptop bao nhiêu inch?","options":["Tối đa 15.6 inch","Trên 15.6 inch","Mọi kích thước","Không có kích thước phù hợp"],"answer":0},{"question":"Dây đồng hồ có những chất liệu da nào?","options":["Da cừu","Da bò, da cừu","Da cá sấu, da cừu","Da bò, da cá sấu"],"answer":3},{"question":"Găng tay được làm từ chất liệu da gì?","options":["Da trăn","Da cá sấu","Da cừu, da hươu","Da cá sấu, da cừu"],"answer":2},{"question":"Các vật dụng cần thiết để đóng gói dây lưng?","options":["Cuộn bọc mặt, túi bọc dây lưng, túi vải, túi giấy","Cuộn bọc mặt, túi vải, hộp giấy, túi giấy","Cuộn bọc mặt, túi bọc dây lưng, hộp giấy, túi giấy","Túi nilon, túi vải, hộp giấy"],"answer":2},{"question":"Các vật dụng cần thiết để đóng gói túi xách?","options":["Túi vải, túi giấy","Túi nilon, túi giấy","Túi vải, hộp giấy","Túi nilon, hộp giấy"],"answer":0},{"question":"Các vật dụng cần thiết để đóng gói giày?","options":["Túi vải, cốt giữ phom giày, hộp giấy, túi giấy","Túi vải, cốt giữ phom giày, túi giấy","Túi vải, cốt giữ phom giày, túi giấy","Túi nilon, cốt giữ phom giày, hộp giấy, túi giấy"],"answer":0},{"question":"Các vật dụng cần thiết để đóng gói ví?","options":["Hộp giấy, túi giấy","Túi nilon, túi vải, túi giấy","Túi vải hoặc túi nilon, hộp giấy, túi giấy","Cuộn bọc ví, túi vải hoặc túi nilon, hộp giấy, túi giấy"],"answer":2},{"question":"Các vật dụng cần thiết để đóng gói găng tay?","options":["Túi nilon, hộp giấy, túi giấy","Túi nilon, túi vải, hộp giấy, túi giấy","Túi vải, giấy nến, hộp giấy, túi giấy","Túi vải, giấy nến, túi giấy"],"answer":0},{"question":"Tiêu chuẩn trưng bày sản phẩm tại cửa hàng?","options":["Nhiều chủng loại, xen kẽ màu, xen kẽ mã, ngay ngắn, cách đều, đủ tem nhãn, không cong vẹo","Nhiều chủng loại, đồng màu, xen kẽ mã, ngay ngắn, cách đều, đủ tem nhãn, không cong vẹo","Cùng chủng loại, đồng màu, xen kẽ mã, ngay ngắn, cách đều, đủ tem nhãn, không cong vẹo","Cùng chủng loại, xen kẽ màu, xen kẽ mã, ngay ngắn, cách đều, đủ tem nhãn, không cong vẹo"],"answer":3},{"question":"Xưởng sản xuất của thương hiệu ở đâu?","options":["Quảng Bình chịu trách nhiệm chính và hợp tác với nhiều xưởng để đảm bảo đa dạng sản phẩm","Thái Bình chịu trách nhiệm chính và hợp tác với nhiều xưởng để đảm bảo đa dạng sản phẩm","Ninh Bình chịu trách nhiệm chính và hợp tác với nhiều xưởng để đảm bảo đa dạng sản phẩm","Thái Nguyên chịu trách nhiệm chính và hợp tác với nhiều xưởng để đảm bảo đa dạng sản phẩm"],"answer":1},{"question":"Cách phân biệt da thật và da giả?","options":["Da thật không bị ảnh hưởng khi đốt","Da thật có mùi nilon","Da thật không có lỗ chân lông, da giả có lỗ chân lông và các vết sẹo","Da thật có lỗ chân lông, vết sẹo tự nhiên, đốt có mùi tóc cháy, da giả sun lại có mùi nilon"],"answer":3},{"question":"Sản phẩm da có bị đổi màu theo thời gian không?","options":["Không, da thật không nhuộm màu","Không, da thật luôn bền màu","Có, mặc định dùng là sẽ đổi màu","Có, nhưng tùy từng sản phẩm ví dụ như ví dễ đổi màu do ma sát và mồ hôi"],"answer":3},{"question":"Cách bảo quản đồ da để được bền màu?","options":["Đê ngoài nắng và lau bằng cồn","Ngâm nước sau đó lau bằng giấm","Tránh ẩm, dùng kem dưỡng hoặc đánh xi","Không có cách nào để bền màu"],"answer":2},{"question":"Vì sao da thật có nhiều màu?","options":["Da tự nhiên sau khi xử lý sẽ ra màu khác nhau","Da thật không có màu sắc đồng nhất","Da thật được nhuộm để tăng tính thẩm mỹ","Tất cả đáp án trên đều đúng"],"answer":2},{"question":"Tại sao bề mặt da có vết lồi lõm, xước nhẹ?","options":["Do dấu vết tự nhiên từ quá trình sống của con bò","Do bị lỗi kỹ thuật","Do cố ý tạo hiệu ứng","Do ghép da vụn"],"answer":0},{"question":"Vì sao đồ da cá sấu có họa tiết khác nhau?","options":["Vì trong quá trình sản xuất sẽ tạo họa tiết khác nhau","Vì da vụn ghép vào nhau nên tạo họa tiết khác nhau","Vì mỗi miếng da đều có vân da và kích thước khác nhau","Tất cả đồ da cá sấu đều giống nhau"],"answer":2},{"question":"Vì sao giày làm từ da thật thường xuất hiện các nếp nhăn sau khi sử dụng?","options":["Da giả nên sẽ luôn để lại nếp nhăn","Da thật luôn có độ co giãn và đàn hồi, đi lại sẽ để lại nếp nhăn","Da cắt lớp nên nhăn tự nhiên","Da thật bản chất đã bị nhăn sẵn có"],"answer":1},{"question":"Da bò và da cá sấu da nào tốt hơn?","options":["Da cá sấu tốt hơn vì độc đáo hơn","Da bò tốt hơn vì nhã nhặn, thanh lịch, hài hòa hơn","Da bò và da cá sấu đều không tốt","Da bò và da cá sấu đều bền vì là da thật 100% chất lượng cao cấp"],"answer":3},{"question":"Sản phẩm bảo quản trong kho có cần đủ túi hút ẩm và cốt giữ phom không?","options":["Không, khi đóng gói mới thêm vào","Không cần cốt giữ phom, chỉ cần túi hút ẩm","Không cần túi hút ẩm, chỉ cần cốt giữ phom","Cần đầy đủ túi hút ẩm, cốt giữ phom"],"answer":3},{"question":"Sản phẩm bị dính nước thì xử lý như thế nào?","options":["Đem phơi nắng ngay","Lau bằng khăn có cồn, để khô tự nhiên","Lau bằng khăn khô mềm, để nơi thông gió","Không có cách xử lý"],"answer":2},{"question":"Vì sao không nên giặt dây lưng da bằng máy hoặc ngâm nước khi muốn làm sạch mùi hôi?","options":["Dây lưng có thể giặt được","Không nên vì dây lưng dễ bị phai màu khi giặt","Không nên vì máy giặt không đủ sạch","Không nên vì nước có thể làm hỏng cấu trúc da, gây bong tróc hoặc biến dạng"],"answer":3},{"question":"Có nên thử đốt lửa trên sản phẩm không?","options":["Không, sẽ ám khói, nên thử với miếng da thừa","Có, đốt thử sẽ không có vấn đề gì","Có, đốt xong sẽ xử lý bảo hành lại được như mới","Có, đốt thử được với sản phẩm không có đế dễ cháy như giày"],"answer":0},{"question":"Vì sao đồ da cá sấu có giá thành cao hơn so với đồ da bò?","options":["Vì da cá sấu quý hiếm hơn","Vì công đoạn xử lý da cá sấu tốn nhiều thời gian và phức tạp hơn","Vì da cá sấu có đặc điểm vân gai độc đáo nên giá thành cao hơn","Tất cả đáp án trên đều đúng"],"answer":3},{"question":"Sản phẩm ví dùng một thời gian có bị nhăn không?","options":["Có, tất cả sản phẩm đều để lại vết nhăn","Có, ví rất dễ nhăn khi tác động nhẹ","Có, tuy nhiên ví có form dáng rất tốt, nếu để quá nhiều đồ mới làm mất đi độ phẳng của ví","Tất cả đáp án trên đều đúng"],"answer":2},{"question":"Nếu khách hỏi : \"Da bên em có phải da thật không ?\" thì nhân viên trả lời như thế nào ?","options":["Tất cả sản phẩm bên em đều là da thật và được bảo hành 01 năm","Sản phẩm bên em kết hợp cả da thật và da công nghiệp nhưng luôn đảm bảo chất lượng","Chất liệu da không quan trọng, khách hàng nên tập trung vào giá cả","Đáp án A và C đều đúng"],"answer":0},{"question":"Nếu khách hàng hỏi: \"Sao giày bên em da cứng vậy?\" Câu trả lời phù hợp là?","options":["Em cũng thấy vậy, chắc do hàng đợt này da bị cứng","Dạ, giày được lót bởi miếng gỗ bên trong giày nên sẽ hơi cứng ạ","Dạ, tùy từng form giày bên em thiết kế sẽ có độ cứng mềm khác nhau, tuy nhiên sau một thời gian sử dụng, da sẽ mềm và ôm chân hơn ạ","Đáp án A và C đều đúng"],"answer":2},{"question":"Nếu khách hàng hỏi: \"Tại sao bên em lại ít mẫu vậy?\" Nhân viên nên trả lời như thế nào?","options":["Bên em thiết kế theo đơn đặt hàng của khách nên bắt buộc phải giới hạn mẫu mã","Bên em thiết kế theo từng bộ sưu tập và chọn lọc mẫu theo những xu hướng mới nhất","Bên em thiết kế theo tiêu chuẩn nhất định, không sản xuất tràn lan","Bên em như thế này là rất nhiều mẫu rồi"],"answer":1},{"question":"\"Anh thấy các cửa hàng đồ da giảm giá rất nhiều sao bên em không có?\" Lựa chọn câu trả lời phù hợp?","options":["Bên em là hàng thiết kế chọn lọc và trực tiếp sản xuất giá bán đã sát giá gốc nên rất ít khi có chương trình khuyến mãi","Bên em có chương trình giảm giá 10% cho sản phẩm thứ 2","Bên em không bao giờ có chương trình khuyến mãi ạ","Đáp án A và B đều đúng"],"answer":3},{"question":"\"Hàng bên em có gì đặc biệt so với hàng của các hãng khác?\" Trả lời sao cho hợp lý?","options":["Sản phẩm bên em đều đảm bảo chất lượng cho khách hàng, tuy không bảo hành nhưng bên em sẽ luôn có ưu đãi tốt cho khách khi mua","Sản phẩm bên em đều là da thật, bảo hành 1 năm.","Sản phẩm bên em đều là da công nghiệp, bảo hành 10 năm nên khách yên tâm","Tất cả đáp án trên đều đúng"],"answer":1},{"question":"\"Vì sao giày lại hay bị nhăn hả em?\" Chọn đáp án đúng nhất cho câu hỏi?","options":["Vì là da công nghiệp nên sẽ chắc chắn nhăn","Vì da thật có cấu trúc tự nhiên, có độ co giãn nhất định nên khi giày được sử dụng và có lực gập ở phần mu bàn chân, da sẽ tạo nếp nhăn","Vì là da cá sấu nên sẽ dễ nhăn hơn so với các loại da khác","Vì là giả da nên sẽ dễ nhăn"],"answer":1},{"question":"\"Hàng bên em là hàng nhập khẩu à\"? Bạn trả lời khách hàng như thế nào?","options":["Hàng bên em 100% nhập khẩu","Hàng bên em không có hàng nhập khẩu","Hàng hóa bên em được sản xuất tại Việt Nam và nhập khẩu ở nhiều quốc gia khác (Hàng Thái Lan, Indonesia, Trung Quốc, Malaysia, Ý... )","Không có đáp án đúng"],"answer":2},{"question":"Khách hàng mua sản phẩm giày màu nâu, bạn sẽ tư vấn sản phẩm tiếp theo cho khách hàng như thế nào? Chọn đáp án đúng nhất?","options":["Không cần tư vấn thêm","Tư vấn cho khách hàng mua thêm sản phẩm có giá trị thấp hơn để tiết kiệm chi phí cho khách hàng","Tư vấn cho khách hàng mua thêm mẫu như vậy nhưng các màu sắc khác","Tư vấn khách mua thêm dây lưng/ví nâu để phối hợp, nhưng vẫn tư vấn thêm các sản phẩm khác dựa vào nhu cầu và thực tế"],"answer":3},{"question":"Khi khách hang hỏi: \"Một đôi giày có thể sử dụng bao lâu hả em?\" Lựa chọn câu trả lời đúng nhất?","options":["Tầm vài tháng thôi ạ, vì da thật thì dễ hư hơn da giả","Cái này bên em không đảm bảo thời gian chính xác được ạ","Tùy vào độ hên xui của mỗi đợt hàng về nữa ạ","Dạ, nếu vệ sinh, dưỡng da định kỳ, tránh nước, và sử dụng luân phiên và sử dụng đúng cách, giày da thật có thể dùng từ 2–5 năm hoặc lâu hơn ạ"],"answer":3},{"question":"Tư vấn mẫu giày phù hợp nhất cho khách hàng để đi chơi với phong cách quần jeans?","options":["Giày tây Oxford hoặc Derby thanh lịch","Giày Loafer không buộc dây sang trọng","Giày Moccasin hoặc giày lười trẻ trung, giày boot năng động, dễ phối đồ với jeans","Tất cả các mẫu giày đều chỉ phù hợp đi làm"],"answer":2},{"question":"\"Tại sao cùng là một loại da, mẫu mã giống nhau mà giá khác nhau?\" Nhân viên nên trả lời như thế nào?","options":["Vì từng chi tiết nhỏ như phần lót, đế, đường may và kỹ thuật hoàn thiện da có thể khác nhau","Vì cùng là da thật nhưng có nhiều cấp độ chất lượng, độ bền, độ mềm khác nhau","Vì quy trình xử lý bề mặt da, kỹ thuật gia công, thiết kế chi tiết và độ hoàn thiện có thể khác nhau","Tất cả các lý do trên đều đúng"],"answer":3},{"question":"Tại sao 2 sản phẩm giống nhau, cùng một mẫu mã mà có cái da lì mịn, có cái da sần?","options":["Vì da thật là vật liệu tự nhiên nên mỗi tấm da đều có vân, độ mịn và kết cấu bề mặt khác nhau","Vì mỗi sản phẩm có thể được cắt ra từ những phần khác nhau trên cùng một tấm da","Vì một số mẫu được xử lý thủ công để tạo hiệu ứng sần hoặc mịn tùy thiết kế","Tất cả các lý do trên đều đúng"],"answer":3},{"question":"Tư vấn đánh xi giày: \"Giày màu xanh, vàng, nâu thì đánh xi gì?\"","options":["Đánh xi nâu","Đánh xi đen","Đánh xi màu gì cũng phù hợp","Đánh xi trắng hoặc xi trong"],"answer":3},{"question":"\"Sản phẩm đi 1 thời gian có bị rộng ra không? Giày bị rộng thì làm thế nào?\" Lựa chọn phương án tư vấn?","options":["Da thật nên sẽ không bị bai ra chút nào","Da thật sẽ có độ giãn nở nên sẽ bai ra khoảng 1- 1,5 size, nếu giày rộng khách có thể mang qua đổi hàng","Da thật sẽ có độ giãn nở nên sẽ bai ra không đáng kể, nếu giày rộng khách có thể thêm 1 miếng lót vào giày","Da công nghiệp nên sẽ bai ra khá nhiều, nếu giày rộng khách có thể mua đôi mới"],"answer":2},{"question":"Khách hàng hỏi về dây lưng: \"Dây lưng cá sấu nhà em là dây nối à?\"","options":["Bên em chỉ có dây lưng cá sấu nối","Bên em chỉ có dây lưng cá sấu liền","Bên em không có dây lưng cá sấu","Bên em có cả dây lưng cá sấu loại dây nối và dây liền"],"answer":3},{"question":"Nên tư vấn như thế nào khi khách hàng phản hồi: \"Ví đẹp mà nhỏ thế?\"","options":["Dạ, hiện nay xu hướng ví nhỏ gọn rất được ưa chuộng vì tiện mang theo và vừa với hầu hết các loại túi","Dạ, thiết kế nhỏ nhưng vẫn đủ đựng tiền, thẻ và giấy tờ cần thiết, rất tiện dụng cho anh/chị","Dạ, nếu anh/chị thích loại lớn hơn, bên em cũng có nhiều mẫu để lựa chọn ạ","Tất cả các cách trả lời trên đều đúng"],"answer":3},{"question":"Hỗ trợ như thế nào khi khách hàng gặp vấn đề trong quá trình đặt hàng?","options":["Anh/chị cho em xin SĐT mua hàng để kiểm tra đơn hàng và liên hệ lại","Anh/chị cho em xin địa chỉ ship hàng để kiểm tra đơn hàng và liên hệ lại","Anh/chị cho em xin ngày tháng năm sinh để kiểm tra đơn hàng và liên hệ lại","Anh/chị vui lòng đến trực tiếp cửa hàng để được giải quyết, không hỗ trợ qua điện thoại"],"answer":0},{"question":"Sản phẩm trên web đã hết hàng. Bạn sẽ tư vấn cho khách hàng như thế nào?","options":["Sản phẩm đang cháy hàng, mong anh chị thông cảm.","Sản phẩm đang tạm hết hàng, nhưng còn mẫu mã tương tự, mời anh chị tham khảo","Sản phẩm cũ nên hết hàng từ lâu, anh chị vui long chọn sản phẩm khác","Sản phẩm này chưa bao giờ có trên web, chắc anh chị nhầm cửa hàng"],"answer":1},{"question":"Thời gian giao hàng nếu khách hàng muốn mua online là bao lâu?","options":["Nội thành: trong ngày, ngoại tỉnh: 3- 4 ngày","Nội thành: 1-3 ngày, ngoại tỉnh: 4- 5 ngày.","Nội thành: 1-3 ngày, ngoại tỉnh: 5- 7 ngày","Nội thành: 1-3 ngày, ngoại tỉnh không nhận đơn"],"answer":0},{"question":"Ứng xử khi khách khen sản phẩm của đối thủ tốt hơn, đẹp hơn?","options":["Sản phẩm của đối thủ làm nhái của bên em","Thương hiệu bên em được đánh giá là tốt nhất trên thị trường","Thương hiệu bên em mẫu mã vô cùng ấn tượng và bắt mắt nên sẽ không có chuyện kém hơn","Mỗi thương hiệu có những thiết kế riêng, bên em có nhiều mẫu mã đa dạng, anh chị có thể tham khảo"],"answer":3},{"question":"Xử lý khi tiếp đoàn khách đông và chỉ có 1 nhân viên tại cửa hàng?","options":["Để khách hàng tự chọn, tự thử đồ, không cần tư vấn","Tư vấn tỉ mỉ cho từng khách hàng, khách hàng xếp hàng chờ đến lượt","Trả lời nhanh gọn, rõ ràng các vấn đề, luôn cố gắng đứng ở vị trí bao quát toàn cửa hàng","Ngồi tại quầy quan sát để đỡ mất đồ và chờ khách ra thanh toán"],"answer":2},{"question":"Tư vấn cho khách hàng sử dụng sản phẩm được bền lâu?","options":["Lau sạch, đánh xi 1-2 lần/tuần, tránh vật nặng đè lên gây nứt, nhăn da","Dùng chất tẩy rửa thường xuyên 2-3 lần/tuần","Thường xuyên sấy sản phẩm bằng nhiệt độ cao","Tất cả đáp án trên đều đúng"],"answer":0},{"question":"Khách hàng phản hồi sản phẩm bên ngoài khác với ảnh trên web?","options":["Sản phẩm thật có thể có chút khác biệt do ánh sáng khi chụp cũng có thể làm màu sắc chênh nhẹ hoặc vân da tự nhiên","Ảnh trên web là ảnh lấy chung trên mạng để đăng, sản phẩm thực tế sẽ giống đến 90%","Sản phẩm này cửa hàng cũng không rõ, khách nên tham khảo sản phẩm khác","Không cần tập trung vào câu hỏi của khách, chỉ cần tư vấn sản phẩm hiện có"],"answer":0},{"question":"Khách hàng phản hồi sản phẩm giày trên web đẹp và long lanh hơn thực tế? NVBH ứng xử như thế nào?","options":["Ảnh sản phẩm đều là chụp thật 100%, ánh sáng trắng có thể lên ảnh nhìn sẽ đẹp hơn, nhưng khách hàng có thể thử trực tiếp lên chân để cảm nhận","Ảnh sản phẩm là copy của thương hiệu khác nên nhìn sẽ đẹp hơn 1 chút, nhưng ở ngoài giống đến 90%","Ảnh sản phẩm trên web đã được photoshop nên chắc chắn sẽ đẹp hơn","Tất cả đáp án trên đều đúng"],"answer":0},{"question":"Khách hàng so sánh giá thành với các mẫu mã khác rẻ hơn trên mạng?","options":["Chất lượng chắc chắn là khác nhau ạ","Đấy là hàng nhái mẫu bên em ạ","Hàng rẻ là hàng giả ạ","Dạ, mỗi thương hiệu có tiêu chuẩn gia công và chất lượng khác nhau, bên em sử dụng chất liệu da thật, phần hoàn thiện và phụ kiện cũng được chọn lựa rất kỹ lưỡng ạ"],"answer":3},{"question":"Sản phẩm như thế nào được bảo hành?","options":["Lỗi do kỹ thuật của nhà sản xuất","Không có chương trình bảo hành","Tất cả các lỗi","Chỉ lỗi về da"],"answer":0},{"question":"Trường hợp nào sau đây sẽ từ chối bảo hành?","options":["Mất form khi sử dụng","Rách lỗ xỏ kim dây lưng","Rách, trầy xước, hỏng do co kéo, va đập, cháy,…","Cả 3 đáp án trên"],"answer":3},{"question":"Thời gian đổi trả hàng như thế nào?","options":["5 ngày đối với TA, 15 ngày đối với LF","5 ngày đối với TA, 15 ngày đối với LF.","20 ngày đối với TA, 20 ngày đối với LF","15 ngày đối với TA, 30 ngày đối với LF"],"answer":3},{"question":"Thời gian sửa hàng bảo hành?","options":["7 - 10 ngày làm việc (không tính thứ 7, chủ nhật, lễ, Tết)","3 ngày làm việc (không tính thứ 7, chủ nhật, lễ, Tết)","5 ngày làm việc (không tính thứ 7, chủ nhật, lễ, Tết)","15 ngày làm việc (không tính thứ 7, chủ nhật, lễ, Tết)"],"answer":0},{"question":"Giày bị mốc, ố vàng có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":2},{"question":"Giày bị nứt da có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Đế mòn có bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Sản phẩm bạc màu có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Mặt dây lưng có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Đối với sản phẩm bong viền keo có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Dây lưng cá sấu bị bung mối nối có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Dây đồng hồ bị bung mối nối có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Dây đồng hồ không có mối nối"],"answer":3},{"question":"Bong da nổ da có đổi mới cho khách hàng không?","options":["Sửa chữa có phí","Chỉ nhận bảo hành không đổi mới","Không nhận bảo hành và không đổi mới","Tùy vào tình trạng lỗi của từng sản phẩm để xem xét về vấn đề bảo hành hoặc đổi mới"],"answer":3},{"question":"Cửa hàng có bảo dưỡng sản phẩm cho khách hàng không? Thời gian bảo dưỡng là bao lâu?","options":["Không nhận bảo dưỡng","Có bảo dưỡng trong vòng 1 năm","Có bảo dưỡng trong vòng 5 năm","Có bảo dưỡng trọn đời"],"answer":3},{"question":"Phụ kiện có được bảo hành không?","options":["Có nhận bảo hành","Không nhận bảo hành","Sửa chữa có phí","Tùy vào tình trạng lỗi của từng sản phẩm, có sản phẩm bảo hành, có sản phẩm không bảo hành"],"answer":3},{"question":"Trường hợp rách lớp lót vải bên trong ví, túi xách có nằm được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Găng tay bị rách da có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Tùy từng cửa hàng"],"answer":2},{"question":"Trường hợp trầy xước da có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Tùy vào tình trạng lỗi của từng sản phẩm, có sản phẩm bảo hành, có sản phẩm không bảo hành"],"answer":3},{"question":"Có nhận bảo hành đối với giày nhăn hay không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":2},{"question":"Sản phẩm bung chỉ/ tuột chỉ được bảo hành không và trong bao lâu?","options":["Sửa chữa có phí trọn đời","Không nhận bảo hành","Có nhận bảo hành trong vòng 1 năm","Tùy vào tình trạng lỗi của từng sản phẩm, có sản phẩm bảo hành trong vòng 6 tháng, có sản phẩm không bảo hành"],"answer":2},{"question":"Dây đồng hồ bị ngâm nước có nhận bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Tùy vào tình trạng lỗi của từng sản phẩm, có sản phẩm bảo hành, có sản phẩm không bảo hành"],"answer":3},{"question":"\"Đối với sản phẩm bảo hành xong nhưng khách hàng không ưng ý thì có được đổi mới hay không?\" Trường hợp này sẽ phản hồi với khách hàng ra sao?","options":["Bên em không có chính sách đổi","Bên em sẽ đổi mới sản phẩm cho anh chị","Bên em bảo hành luôn đảm bảo chất lượng nên mong anh chị nhận sản phẩm","Bên em thành thật xin lỗi anh chị. Em xin phép nhận lại sản phẩm để gửi bộ phận bảo hành lại cho anh chị"],"answer":3},{"question":"Khách hàng mang sản phẩm lỗi tới cửa hàng, NVBH sẽ cần làm gì?","options":["Kiểm tra, xác định nguyên nhân lỗi, thông báo hạng mức bảo hành và dự trù chi phí (nếu có)","Lên đơn hàng, thông báo về hạng mức bảo hành và dự trù chi phí (nếu có)","Nhập phần mềm ATO, thông báo về hạng mức bảo hành và dự trù chi phí (nếu có)","Tất cả đáp án trên đều đúng"],"answer":0},{"question":"Các sản phẩm không thuộc diện bảo hành, cửa hàng có hỗ trợ sửa chữa cho khách hàng hay không?","options":["Không nhận sửa chữa","Có nhận sửa chữa tất cả","Có nhận sửa chữa đối với các sản phẩm có thể sửa chữa được, khách hàng sẽ thanh toán phí sửa chữa và phí vận chuyển","Chỉ sửa chữa giày, còn lại các sản phẩm khác không sửa chữa"],"answer":2},{"question":"Khách hàng mua sản phẩm tại HCM, có thể bảo hành tại Hà Nội không?","options":["Chỉ bảo hành tại cửa hàng đã mua","Có thể bảo hành tại tất cả cửa hàng trên toàn quốc","Có, tuy nhiên thời gian bảo hành sẽ từ 20-30 ngày","Khách hàng sẽ mất thêm phụ phí nếu bảo hành tại cơ sở khác"],"answer":1},{"question":"Găng tay bị bung phụ kiện có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Ví cầm tay bị hỏng khóa cài/ khóa số có được bảo hành không?","options":["Sửa chữa có phí","Có nhận bảo hành","Không nhận bảo hành","Không thể khắc phục được"],"answer":1},{"question":"Hỏng khóa được bảo hành trong bao lâu?","options":["1 năm","2 năm","6 tháng","3 tháng"],"answer":2},{"question":"Khi nào sản phẩm sửa chữa có phí?","options":["Khi sản phẩm bị mất hóa đơn","Khi sản phẩm có lỗi do nhà sản xuất","Khi sản phẩm còn trong thời gian bảo hành","Khi sản phẩm hết thời gian bảo hành hoặc bị hư hỏng do hao mòn"],"answer":3},{"question":"Khi nào sẽ thông báo trước về thời gian bảo hành có thể dài hơn 10 ngày?","options":["Khi khách hàng yêu cầu sửa chữa sản phẩm ngoài bảo hành","Khi sản phẩm bị lỗi nhẹ sẽ bảo hành sau 10 ngày, ưu tiên bảo hành những sản phẩm lỗi nặng trước","Khi có trường hợp đặc biệt về sản phẩm bảo hành hoặc sản phẩm phải gửi về xưởng…","Không có trường hợp nào bảo hành dài hơn 10 ngày"],"answer":2}];
@@ -849,7 +1133,7 @@ function showConfirmDialog(unanswered) {
   document.body.appendChild(overlay);
 }
 
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyGoHZDY6P336GYVqy2r6plW6vTsj15gd7U-Ay1hGq0VhWIlSzrdwWffWZMskodGEJZ/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyVL_kkuNjNTc9XiuOjV47-cJA3f4x3llGv6huNKQRhiOx7rIpwYgxzR93LQ5rXACA/exec';
 
 function sendToSheet(payload) {
   fetch(SHEET_URL, {
@@ -1004,6 +1288,146 @@ function restartQuiz() {
 document.getElementById('nameInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') startQuiz();
 });
+
+// ── ADMIN ──
+const ADMIN_USER = 'quynv';
+const ADMIN_PASS = '1234';
+let adminData = [];
+let adminFilter = 'all';
+
+function goAdmin() {
+  const loggedIn = sessionStorage.getItem('adminAuth') === 'ok';
+  if (loggedIn) {
+    show('adminScreen');
+    loadAdminData();
+  } else {
+    show('adminLoginScreen');
+  }
+}
+
+function adminLogin() {
+  const u = document.getElementById('adminUser').value.trim();
+  const p = document.getElementById('adminPass').value;
+  const err = document.getElementById('adminLoginErr');
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    sessionStorage.setItem('adminAuth', 'ok');
+    err.style.display = 'none';
+    show('adminScreen');
+    loadAdminData();
+  } else {
+    err.style.display = 'block';
+  }
+}
+
+function adminLogout() {
+  sessionStorage.removeItem('adminAuth');
+  document.getElementById('adminUser').value = '';
+  document.getElementById('adminPass').value = '';
+  show('startScreen');
+}
+
+document.getElementById('adminPass').addEventListener('keydown', e => {
+  if (e.key === 'Enter') adminLogin();
+});
+
+function adminSetFilter(f, btn) {
+  adminFilter = f;
+  document.querySelectorAll('.admin-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAdminTable();
+}
+
+async function loadAdminData() {
+  document.getElementById('adminLoading').style.display = 'block';
+  document.getElementById('adminEmpty').style.display = 'none';
+  document.getElementById('adminTableBody').innerHTML = '';
+
+  try {
+    const res = await fetch(SHEET_URL + '?action=get', { method: 'GET' });
+    const json = await res.json();
+    adminData = (json.data || []).reverse(); // mới nhất lên đầu
+    updateAdminStats();
+    renderAdminTable();
+  } catch (err) {
+    document.getElementById('adminLoading').style.display = 'none';
+    document.getElementById('adminEmpty').style.display = 'block';
+    document.getElementById('adminEmpty').innerHTML = '<div class="big">⚠️</div><div>Không thể tải dữ liệu.<br><small>Vui lòng kiểm tra Apps Script đã được deploy chưa.</small></div>';
+  }
+}
+
+function updateAdminStats() {
+  const total = adminData.length;
+  if (total === 0) {
+    document.getElementById('statTotal').textContent = '0';
+    document.getElementById('statAvg').textContent = '—';
+    document.getElementById('statPass').textContent = '0';
+    document.getElementById('statAvgTime').textContent = '—';
+    return;
+  }
+
+  const scores = adminData.map(r => parseFloat(r.score) || 0);
+  const avg = (scores.reduce((a, b) => a + b, 0) / total).toFixed(1);
+  const pass = scores.filter(s => s >= 5).length;
+
+  // Average time in seconds
+  const times = adminData.map(r => {
+    if (!r.timeTaken) return 0;
+    const parts = r.timeTaken.split(':');
+    return parseInt(parts[0]) * 60 + parseInt(parts[1] || 0);
+  }).filter(t => t > 0);
+  const avgSec = times.length ? Math.round(times.reduce((a,b)=>a+b,0)/times.length) : 0;
+  const avgMM = String(Math.floor(avgSec/60)).padStart(2,'0');
+  const avgSS = String(avgSec%60).padStart(2,'0');
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statAvg').textContent = avg;
+  document.getElementById('statPass').textContent = `${pass}/${total}`;
+  document.getElementById('statAvgTime').textContent = avgSec ? `${avgMM}:${avgSS}` : '—';
+}
+
+function renderAdminTable() {
+  const search = document.getElementById('adminSearch').value.toLowerCase();
+  const tbody = document.getElementById('adminTableBody');
+  const loading = document.getElementById('adminLoading');
+  const empty = document.getElementById('adminEmpty');
+
+  loading.style.display = 'none';
+
+  let filtered = adminData.filter(r => {
+    const matchSearch = !search || (r.name || '').toLowerCase().includes(search);
+    const score = parseFloat(r.score) || 0;
+    const matchFilter = adminFilter === 'all' ||
+      (adminFilter === 'pass' && score >= 5) ||
+      (adminFilter === 'fail' && score < 5);
+    return matchSearch && matchFilter;
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    empty.innerHTML = '<div class="big">📭</div><div>Không có kết quả nào phù hợp</div>';
+    return;
+  }
+
+  empty.style.display = 'none';
+  const scoreClass = s => s >= 8 ? 'ex' : s >= 5 ? 'good' : 'fail';
+
+  tbody.innerHTML = filtered.map((r, i) => {
+    const score = parseFloat(r.score) || 0;
+    const sc = scoreClass(score);
+    const statusCls = r.status === 'Hết giờ' ? 'timeout' : 'done';
+    return `<tr>
+      <td style="color:var(--gray-400);font-weight:600">${i+1}</td>
+      <td style="white-space:nowrap;font-size:13px;">${r.time || '—'}</td>
+      <td style="font-weight:600;color:var(--gray-900)">${r.name || '—'}</td>
+      <td><span class="score-pill ${sc}">${score.toFixed(1)}</span></td>
+      <td style="color:#16A34A;font-weight:700">${r.correct ?? '—'}</td>
+      <td style="color:#DC2626;font-weight:700">${r.wrong ?? '—'}</td>
+      <td style="font-size:13px;">${r.timeTaken || '—'}</td>
+      <td><span class="status-pill ${statusCls}">${r.status || '—'}</span></td>
+    </tr>`;
+  }).join('');
+}
 </script>
 </body>
 </html>
