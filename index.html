@@ -1163,13 +1163,13 @@ function submitQuiz(timeout) {
   const ss = String(elapsed % 60).padStart(2, '0');
   const timeTaken = mm + ':' + ss;
 
-  // Gửi lên Google Sheet
+  // Gửi lên Google Sheet (thêm dấu nháy trước timeTaken để tránh Google Sheet tự convert)
   sendToSheet({
     name: state.userName,
     score: scoreNum.toFixed(1),
     correct: correct,
     wrong: QUIZ_SIZE - correct,
-    timeTaken: timeTaken,
+    timeTaken: "'" + timeTaken,
     status: timeout ? 'Hết giờ' : 'Nộp bài'
   });
 
@@ -1390,7 +1390,12 @@ function updateAdminStats() {
     return;
   }
 
-  const scores = adminData.map(r => parseFloat(r.score) || 0);
+  // Tính điểm thực: nếu score > 10 thì tính lại từ correct
+  const scores = adminData.map(r => {
+    let s = parseFloat(r.score) || 0;
+    if (s > 10 || s <= 0) s = parseFloat(((parseInt(r.correct)||0) / 30 * 10).toFixed(1));
+    return s;
+  });
   const avg = (scores.reduce((a, b) => a + b, 0) / total).toFixed(1);
   const pass = scores.filter(s => s >= 5).length;
 
@@ -1441,14 +1446,32 @@ function renderAdminTable() {
     const score = parseFloat(r.score) || 0;
     const sc = scoreClass(score);
     const statusCls = r.status === 'Hết giờ' ? 'timeout' : 'done';
+    // Fix timeTaken: nếu là ISO date string thì convert về mm:ss
+    let tg = r.timeTaken || '—';
+    if (tg.includes('T') && tg.includes('Z')) {
+      try {
+        const d = new Date(tg);
+        const totalSec = d.getHours()*3600 + d.getMinutes()*60 + d.getSeconds();
+        const mm = String(Math.floor(totalSec/60)).padStart(2,'0');
+        const ss = String(totalSec%60).padStart(2,'0');
+        tg = mm + ':' + ss;
+      } catch(e) { tg = '—'; }
+    }
+    // Fix score: nếu bị lưu thành số lạ (>10) thì tính lại từ correct
+    let displayScore = score;
+    if (score > 10 || score <= 0) {
+      const correct = parseInt(r.correct) || 0;
+      displayScore = parseFloat((correct / 30 * 10).toFixed(1));
+    }
+    const sc2 = scoreClass(displayScore);
     return `<tr>
       <td style="color:var(--gray-400);font-weight:600">${i+1}</td>
       <td style="white-space:nowrap;font-size:13px;">${r.time || '—'}</td>
       <td style="font-weight:600;color:var(--gray-900)">${r.name || '—'}</td>
-      <td><span class="score-pill ${sc}">${score.toFixed(1)}</span></td>
+      <td><span class="score-pill ${sc2}">${displayScore.toFixed(1)}</span></td>
       <td style="color:#16A34A;font-weight:700">${r.correct ?? '—'}</td>
       <td style="color:#DC2626;font-weight:700">${r.wrong ?? '—'}</td>
-      <td style="font-size:13px;">${r.timeTaken || '—'}</td>
+      <td style="font-size:13px;">${tg}</td>
       <td><span class="status-pill ${statusCls}">${r.status || '—'}</span></td>
     </tr>`;
   }).join('');
