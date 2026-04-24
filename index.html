@@ -1356,8 +1356,7 @@ async function loadAdminData() {
 }
 
 function parseCSV(text) {
-  const lines = text.trim().split('
-');
+  const lines = text.trim().split(/\r?\n/);
   if (lines.length < 2) return [];
   // Skip header row (row 0)
   return lines.slice(1).map(line => {
