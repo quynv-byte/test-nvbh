@@ -1338,22 +1338,46 @@ function adminSetFilter(f, btn) {
   renderAdminTable();
 }
 
-async function loadAdminData() {
+function loadAdminData() {
   document.getElementById('adminLoading').style.display = 'block';
   document.getElementById('adminEmpty').style.display = 'none';
   document.getElementById('adminTableBody').innerHTML = '';
 
-  try {
-    const res = await fetch(SHEET_URL + '?action=get', { method: 'GET' });
-    const json = await res.json();
-    adminData = (json.data || []).reverse(); // mới nhất lên đầu
+  // Dùng JSONP để bypass CORS
+  const callbackName = 'adminCallback_' + Date.now();
+  const script = document.createElement('script');
+  script.src = SHEET_URL + '?callback=' + callbackName;
+
+  const timeout = setTimeout(() => {
+    cleanup();
+    showAdminError();
+  }, 10000);
+
+  function cleanup() {
+    clearTimeout(timeout);
+    if (script.parentNode) script.parentNode.removeChild(script);
+    delete window[callbackName];
+  }
+
+  window[callbackName] = function(json) {
+    cleanup();
+    adminData = (json.data || []).reverse();
     updateAdminStats();
     renderAdminTable();
-  } catch (err) {
-    document.getElementById('adminLoading').style.display = 'none';
-    document.getElementById('adminEmpty').style.display = 'block';
-    document.getElementById('adminEmpty').innerHTML = '<div class="big">⚠️</div><div>Không thể tải dữ liệu.<br><small>Vui lòng kiểm tra Apps Script đã được deploy chưa.</small></div>';
-  }
+  };
+
+  script.onerror = function() {
+    cleanup();
+    showAdminError();
+  };
+
+  document.head.appendChild(script);
+}
+
+function showAdminError() {
+  document.getElementById('adminLoading').style.display = 'none';
+  document.getElementById('adminEmpty').style.display = 'block';
+  document.getElementById('adminEmpty').innerHTML = '<div class="big">⚠️</div><div>Không thể tải dữ liệu.<br><small>Kiểm tra lại Apps Script đã cập nhật code mới và deploy chưa.</small></div>';
 }
 
 function updateAdminStats() {
