@@ -33,6 +33,11 @@
     color: var(--gray-900);
     padding: 16px;
   }
+  /* Start screen needs no body padding */
+  body:has(#startScreen.active) {
+    padding: 0;
+    background: linear-gradient(135deg, #EEF2FF 0%, #F0F9FF 50%, #F0FDF4 100%);
+  }
 
   .screen { display: none; }
   .screen.active { display: block; }
@@ -63,7 +68,101 @@
   .loading-error { color: var(--danger); font-size: 14px; margin-top: 12px; display: none; }
 
   /* ── START ── */
-  #startScreen { max-width: 480px; margin: 40px auto; }
+  #startScreen {
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 24px 0;
+  }
+  .start-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    width: 100%;
+    min-height: 600px;
+  }
+  /* Left: hero image */
+  .start-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+  }
+  .start-hero img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .start-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(45,91,227,0.15) 0%, rgba(0,0,0,0.25) 100%);
+  }
+  .start-hero-badge {
+    position: absolute; top: 24px; left: 24px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 999px; padding: 8px 18px;
+    font-size: 13px; font-weight: 700; color: var(--primary);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .start-hero-badge .shield { font-size: 16px; }
+  /* Right: form */
+  .start-form-panel {
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+  }
+  .start-welcome {
+    font-size: 13px; font-weight: 600;
+    color: var(--primary); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .start-title {
+    font-size: 28px; font-weight: 800;
+    color: var(--gray-900); line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .start-desc {
+    font-size: 14px; color: var(--gray-600);
+    line-height: 1.7; margin-bottom: 28px;
+  }
+  .start-desc p { margin-bottom: 8px; }
+  .start-desc p:last-child { margin-bottom: 0; }
+  .divider { height: 1px; background: var(--gray-200); margin-bottom: 28px; }
+
+  /* Info grid (compact) */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .info-item {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .info-icon { font-size: 20px; flex-shrink: 0; }
+  .info-label { font-size: 10px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .info-value { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-top: 2px; }
+
+  /* Input row */
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+  .input-label .req { color: var(--danger); }
+
+  .name-input {
+    width: 100%; padding: 13px 16px;
+    border: 2px solid var(--gray-200); border-radius: var(--radius);
+    font-size: 14px; font-family: inherit; outline: none;
+    transition: border-color 0.2s; margin-bottom: 0;
+  }
+  .name-input:focus { border-color: var(--primary); }
+  .name-input::placeholder { color: var(--gray-400); }
+
   .brand-badge {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--primary); color: #fff;
@@ -73,38 +172,37 @@
   }
   .brand-badge .dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; opacity: 0.7; }
   .card { background: #fff; border-radius: 20px; box-shadow: var(--shadow-lg); padding: 32px; }
-  .start-title { font-size: 26px; font-weight: 800; color: var(--gray-900); line-height: 1.3; margin-bottom: 8px; }
-  .start-subtitle { color: var(--gray-600); font-size: 14px; margin-bottom: 28px; }
-  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
-  .info-item {
-    background: var(--gray-50); border: 1px solid var(--gray-200);
-    border-radius: var(--radius); padding: 14px 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .info-icon { font-size: 22px; flex-shrink: 0; }
-  .info-label { font-size: 11px; color: var(--gray-400); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-  .info-value { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-top: 2px; }
-  .name-input {
-    width: 100%; padding: 14px 18px;
-    border: 2px solid var(--gray-200); border-radius: var(--radius);
-    font-size: 15px; font-family: inherit; outline: none;
-    transition: border-color 0.2s; margin-bottom: 16px;
-  }
-  .name-input:focus { border-color: var(--primary); }
-  .name-input::placeholder { color: var(--gray-400); }
   .btn { width: 100%; padding: 16px; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; transition: all 0.2s; }
   .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 4px 16px rgba(45,91,227,0.3); }
   .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
   .btn-secondary { background: var(--gray-100); color: var(--gray-700); }
   .btn-secondary:hover { background: var(--gray-200); }
 
+  /* Responsive start screen */
+  @media (max-width: 768px) {
+    #startScreen { padding: 12px 0; min-height: unset; }
+    .start-layout { grid-template-columns: 1fr; }
+    .start-hero { min-height: 220px; }
+    .start-form-panel { padding: 28px 24px; }
+    .input-row { grid-template-columns: 1fr; }
+    .start-title { font-size: 22px; }
+  }
+
   /* ── QUIZ ── */
-  #quizScreen { max-width: 680px; margin: 0 auto; }
+  #quizScreen { max-width: 760px; margin: 0 auto; }
   .quiz-header {
     background: #fff; border-radius: 16px; box-shadow: var(--shadow);
-    padding: 16px 20px; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 16px;
+    padding: 14px 20px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
   }
+  .btn-submit-header {
+    padding: 8px 18px; border: none; border-radius: 999px;
+    background: var(--danger-light); color: var(--danger);
+    font-size: 13px; font-weight: 700; font-family: inherit;
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .btn-submit-header:hover { background: var(--danger); color: #fff; }
   .q-counter { font-size: 13px; color: var(--gray-600); font-weight: 500; white-space: nowrap; }
   .q-counter span { font-weight: 800; color: var(--primary); }
   .progress-bar-wrap { flex: 1; height: 8px; background: var(--gray-100); border-radius: 999px; overflow: hidden; }
@@ -197,11 +295,9 @@
   .filter-btn.active-wrong, .filter-btn.active-wrong:hover { border-color: var(--danger); background: var(--danger-light); color: var(--danger); }
 
   @media (max-width: 480px) {
-    .info-grid { grid-template-columns: 1fr; }
     .question-text { font-size: 15px; }
     .option-btn { font-size: 14px; }
     .result-score-display { font-size: 64px; }
-    body { padding: 12px; }
     .card, .question-card, .result-card { padding: 20px; }
   }
 
@@ -264,38 +360,63 @@
 
 <!-- ── START ── -->
 <div id="startScreen" class="screen">
-  <div style="text-align:center; margin-bottom: 20px;">
-    <div class="brand-badge"><div class="dot"></div> QUIZ</div>
-  </div>
-  <div class="card">
-    <div class="start-title">Câu hỏi Test<br>Nhân viên bán hàng</div>
-    <div class="start-subtitle">Kiểm tra kiến thức sản phẩm &amp; kỹ năng bán hàng</div>
-    <div class="info-grid">
-      <div class="info-item">
-        <div class="info-icon">⏱️</div>
-        <div><div class="info-label">Thời gian</div><div class="info-value">30 phút</div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">📋</div>
-        <div><div class="info-label">Số câu hỏi</div><div class="info-value" id="infoQuizSize">30 câu</div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🎯</div>
-        <div><div class="info-label">Thang điểm</div><div class="info-value">10 điểm</div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🔀</div>
-        <div><div class="info-label">Câu hỏi</div><div class="info-value">Ngẫu nhiên</div></div>
+  <div class="start-layout">
+    <!-- Left: hero image -->
+    <div class="start-hero">
+      <img src="https://drive.google.com/uc?export=view&id=1KIFEe_AwqKM_edN-Z-Sq7uicuBIQZjqK"
+           alt="Đồ Da Tâm Anh"
+           onerror="this.style.background='linear-gradient(135deg,#2D5BE3,#1a3fa8)';this.src=''" />
+      <div class="start-hero-overlay"></div>
+      <div class="start-hero-badge">
+        <span class="shield">🛡️</span> TÂM ANH
       </div>
     </div>
-    <div style="background:var(--primary-light);border-radius:var(--radius);padding:10px 14px;margin-bottom:20px;font-size:13px;color:var(--primary);display:flex;align-items:center;gap:8px;">
-      <span>📚</span>
-      <span id="bankInfo">Ngân hàng câu hỏi đã sẵn sàng</span>
-    </div>
-    <input class="name-input" type="text" id="nameInput" placeholder="Nhập họ tên để bắt đầu làm bài" maxlength="60" />
-    <button class="btn btn-primary" onclick="startQuiz()">Bắt đầu làm bài →</button>
-    <div style="text-align:center;margin-top:16px;">
-      <button onclick="goAdmin()" style="background:none;border:none;color:var(--gray-400);font-size:13px;font-family:inherit;cursor:pointer;padding:4px;">⚙️ Đăng nhập quản trị</button>
+    <!-- Right: form -->
+    <div class="start-form-panel">
+      <div class="start-welcome">✦ Bài kiểm tra năng lực</div>
+      <div class="start-title">Test Nhân Viên Bán Hàng<br>Đồ Da Tâm Anh 2026</div>
+      <div class="start-desc">
+        <p>Chào mừng bạn đến với bài kiểm tra năng lực dành cho ứng viên Nhân viên Bán hàng tại Đồ Da Tâm Anh.</p>
+        <p>Đây không chỉ là một bài kiểm tra kiến thức, mà còn là cơ hội để bạn thể hiện tư duy dịch vụ, khả năng giao tiếp và tinh thần cầu tiến của bản thân.</p>
+        <p>Chúc bạn hoàn thành bài thi thật tốt và hy vọng sẽ sớm đồng hành cùng bạn tại Đồ Da Tâm Anh!</p>
+      </div>
+      <div class="divider"></div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-icon">⏱️</div>
+          <div><div class="info-label">Thời gian</div><div class="info-value">30 phút</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📋</div>
+          <div><div class="info-label">Số câu hỏi</div><div class="info-value" id="infoQuizSize">30 câu</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🎯</div>
+          <div><div class="info-label">Thang điểm</div><div class="info-value">10 điểm</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🔀</div>
+          <div><div class="info-label">Câu hỏi</div><div class="info-value">Ngẫu nhiên</div></div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label class="input-label">Họ và tên <span class="req">*</span></label>
+          <input class="name-input" type="text" id="nameInput" placeholder="Nguyễn Văn A" maxlength="60" />
+        </div>
+        <div class="input-group">
+          <label class="input-label">Vị trí công việc <span class="req">*</span></label>
+          <input class="name-input" type="text" id="positionInput" placeholder="Nhân viên bán hàng" maxlength="60" />
+        </div>
+      </div>
+      <div style="background:var(--primary-light);border-radius:var(--radius);padding:9px 14px;margin-bottom:16px;font-size:12px;color:var(--primary);display:flex;align-items:center;gap:7px;">
+        <span>📚</span>
+        <span id="bankInfo">Đang tải ngân hàng câu hỏi...</span>
+      </div>
+      <button class="btn btn-primary" onclick="startQuiz()" style="margin-bottom:12px;">Tiếp Tục →</button>
+      <div style="text-align:center;">
+        <button onclick="goAdmin()" style="background:none;border:none;color:var(--gray-400);font-size:13px;font-family:inherit;cursor:pointer;padding:4px;">⚙️ Đăng nhập quản trị</button>
+      </div>
     </div>
   </div>
 </div>
@@ -308,6 +429,7 @@
       <div class="progress-bar-fill" id="progressFill" style="width:3.33%"></div>
     </div>
     <div class="timer-badge" id="timerBadge">⏱ <span id="timerDisplay">30:00</span></div>
+    <button class="btn-submit-header" onclick="earlySubmit()">Nộp bài</button>
   </div>
   <div class="question-card" id="questionCard">
     <div class="question-number" id="questionNumLabel">Câu 1</div>
@@ -431,7 +553,7 @@ const ADMIN_PASS  = '1234';
 // ═══════════════════════════════════════════════
 let ALL_QUESTIONS = [];   // loaded from sheet
 let state = {
-  userName: '', questions: [], answers: [],
+  userName: '', position: '', questions: [], answers: [],
   current: 0, timeLeft: TOTAL_TIME,
   timer: null, submitted: false
 };
@@ -531,13 +653,21 @@ function show(id) {
 // ═══════════════════════════════════════════════
 function startQuiz() {
   const name = document.getElementById('nameInput').value.trim();
+  const position = document.getElementById('positionInput').value.trim();
   if (!name) {
     const inp = document.getElementById('nameInput');
     inp.focus(); inp.style.borderColor = '#DC2626';
     setTimeout(() => inp.style.borderColor = '', 1500);
     return;
   }
+  if (!position) {
+    const inp = document.getElementById('positionInput');
+    inp.focus(); inp.style.borderColor = '#DC2626';
+    setTimeout(() => inp.style.borderColor = '', 1500);
+    return;
+  }
   state.userName = name;
+  state.position = position;
   state.questions = shuffle(ALL_QUESTIONS).slice(0, QUIZ_SIZE);
   state.answers   = new Array(QUIZ_SIZE).fill(null);
   state.current   = 0;
@@ -644,6 +774,30 @@ function showConfirmDialog(unanswered) {
   document.body.appendChild(overlay);
 }
 
+function earlySubmit() {
+  const answered = state.answers.filter(a => a !== null).length;
+  const unanswered = QUIZ_SIZE - answered;
+  // Reuse confirm dialog logic
+  const old = document.getElementById('confirmDialog');
+  if (old) old.remove();
+  const overlay = document.createElement('div');
+  overlay.id = 'confirmDialog';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:20px;padding:28px;max-width:360px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.2);text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">📋</div>
+      <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:8px;">Xác nhận nộp bài</div>
+      <div style="font-size:14px;color:#6B7280;margin-bottom:24px;">
+        Đã trả lời <strong style="color:var(--primary)">${answered}/${QUIZ_SIZE} câu</strong>.${unanswered > 0 ? `<br>Còn <strong style="color:#DC2626">${unanswered} câu</strong> chưa chọn đáp án.` : ''}<br>Bạn có chắc muốn nộp bài không?
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button onclick="document.getElementById('confirmDialog').remove()" style="flex:1;padding:12px;border:2px solid #E5E7EB;border-radius:10px;background:#F9FAFB;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;">Quay lại</button>
+        <button onclick="document.getElementById('confirmDialog').remove();submitQuiz(false);" style="flex:1;padding:12px;border:none;border-radius:10px;background:#16A34A;color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;">Nộp bài</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
 function sendToSheet(payload) {
   fetch(SHEET_URL, {
     method: 'POST', mode: 'no-cors',
@@ -667,6 +821,7 @@ function submitQuiz(timeout) {
 
   sendToSheet({
     name: state.userName,
+    position: state.position || '',
     score: scoreNum.toFixed(1),
     correct, wrong: QUIZ_SIZE - correct,
     timeTaken: "'" + timeTaken,
@@ -754,7 +909,11 @@ function renderReview() {
 }
 
 function backToResult()  { show('resultScreen'); }
-function restartQuiz()   { document.getElementById('nameInput').value = state.userName; show('startScreen'); }
+function restartQuiz() {
+  document.getElementById('nameInput').value = state.userName;
+  document.getElementById('positionInput').value = state.position || '';
+  show('startScreen');
+}
 
 // ═══════════════════════════════════════════════
 //  ADMIN
