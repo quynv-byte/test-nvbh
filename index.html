@@ -60,20 +60,23 @@
   #startScreen {
     width: 100%;
     display: flex !important;
+    height: 100vh;
+    overflow: hidden;
   }
   .start-layout {
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
   }
-  /* Left: hero — fixed width, full height */
+  /* Left: hero */
   .start-hero {
     flex: 0 0 50%;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, #1a3fa8 0%, #2D5BE3 100%);
-    min-height: 100vh;
+    height: 100vh;
   }
   .start-hero-overlay {
     position: absolute; inset: 0; z-index: 1;
@@ -100,6 +103,7 @@
     padding: 48px 48px;
     background: #fff;
     box-sizing: border-box;
+    height: 100vh;
     overflow-y: auto;
   }
   .start-welcome {
@@ -616,7 +620,9 @@ function shuffle(arr) {
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 }
 
 // ═══════════════════════════════════════════════
