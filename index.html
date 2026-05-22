@@ -1036,8 +1036,8 @@ function renderAdminTable() {
 // ═══════════════════════════════════════════════
 (function loadHeroImage() {
   const sources = [
+    'https://i.postimg.cc/zGKTfJGG/cua-hang-do-tam-anh-co-so-tp-hcm.jpg',
     'https://i.postimg.cc/43Rn2VZG/do-da-thuong-hieu-tam-anh.jpg',
-    'https://i.ibb.co/2pWQZbf/do-da-thuong-hieu-tam-anh.jpg',
   ];
   const container = document.getElementById('heroBg');
   if (!container) return;
@@ -1051,7 +1051,7 @@ function renderAdminTable() {
       const imgEl = document.createElement('img');
       imgEl.src = sources[idx];
       imgEl.alt = 'Đồ Da Tâm Anh';
-      imgEl.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% center;display:block;';
+      imgEl.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;';
       container.appendChild(imgEl);
     };
     img.onerror = () => { idx++; tryNext(); };
